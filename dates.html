@@ -218,6 +218,57 @@ body {
 }
 
     }
+    
+/* Fix navigation on Our Dates page only */
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 6%;
+  background: #fff9f0;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.navigation .logo {
+  font-family: "Caveat", cursive;
+  font-size: 32px;
+  font-weight: 700;
+  color: #bc7188;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #70554f;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #bc7188;
+}
+
+@media (max-width: 700px) {
+  .navigation {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
   </style>
 </head>
 
