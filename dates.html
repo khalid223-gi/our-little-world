@@ -4,20 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Our Dates | Our Little World</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 
   <style>
     .dates-header {
       text-align: center;
-      padding: 90px 20px 60px;
+      padding: 75px 20px 30px;
     }
 
     .dates-header h1 {
@@ -39,14 +36,16 @@
     .dates-grid {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 6% 120px;
+      padding: 40px 6% 75px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 75px 65px;
+      box-sizing: border-box;
     }
 
     .date-card {
       position: relative;
+      min-width: 0;
       background: #fffdf8;
       padding: 18px 18px 30px;
       box-shadow: 5px 9px 25px #6f514026;
@@ -86,7 +85,7 @@
       font-family: "Caveat", cursive;
       font-size: 23px;
       color: #bc7188;
-      margin: 0 8px 12px;
+      margin: 15px 8px 12px;
     }
 
     .date-description {
@@ -94,6 +93,7 @@
       line-height: 1.8;
       color: #8b7770;
       margin: 0 8px;
+      overflow-wrap: anywhere;
     }
 
     .date-tape {
@@ -109,7 +109,7 @@
 
     .date-number {
       position: absolute;
-      right: -18px;
+      right: -12px;
       top: 35px;
       background: #fbe4e9;
       color: #bc7188;
@@ -129,11 +129,76 @@
       color: #bc7188;
     }
 
+    .upload-area {
+      max-width: 520px;
+      margin: 15px auto 30px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .upload-button {
+      background: #c98196;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 28px;
+      font: 600 15px "DM Sans", sans-serif;
+      cursor: pointer;
+    }
+
+    .upload-button:hover {
+      background: #b66e85;
+    }
+
+    .upload-button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .upload-form {
+      display: none;
+      background: #fffaf7;
+      border: 1px solid #ecd9d8;
+      border-radius: 18px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+
+    .upload-form.open {
+      display: block;
+    }
+
+    .upload-form input {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 14px;
+      padding: 12px;
+      border: 1px solid #e4cccc;
+      border-radius: 10px;
+      font: 14px "DM Sans", sans-serif;
+    }
+
+    .upload-status {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #815a65;
+    }
+
+    .new-dates-heading {
+      text-align: center;
+      margin: 45px 20px 5px;
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: #80545f;
+    }
+
     @media (max-width: 700px) {
       .dates-grid {
         grid-template-columns: 1fr;
         gap: 55px;
-        padding: 25px 9% 80px;
+        padding: 25px 9% 70px;
       }
 
       .date-card img {
@@ -141,257 +206,134 @@
       }
 
       .dates-header {
-        padding-top: 65px;
+        padding-top: 55px;
       }
-   
-/* FIX OUR DATES PAGE */
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: #fff9f0;
-  color: #574b47;
-}
-
-.navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  padding: 24px 6%;
-  flex-wrap: wrap;
-}
-
-.navigation .logo {
-  font-family: "Caveat", cursive;
-  font-size: 30px;
-  color: #bc7188;
-  text-decoration: none;
-}
-
-.navigation .nav-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.navigation .nav-links a {
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  color: #70554f;
-  text-decoration: none;
-}
-
-.dates-header,
-.dates-grid,
-.date-card,
-.dates-ending {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.dates-header,
-.dates-grid {
-  display: block;
-}
-
-.dates-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-@media (max-width: 700px) {
-  .navigation {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .navigation .nav-links {
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .dates-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
     }
-    
-/* Fix navigation on Our Dates page only */
-.navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 6%;
-  background: #fff9f0;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.navigation .logo {
-  font-family: "Caveat", cursive;
-  font-size: 32px;
-  font-weight: 700;
-  color: #bc7188;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.nav-links a {
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  color: #70554f;
-  text-decoration: none;
-}
-
-.nav-links a:hover {
-  color: #bc7188;
-}
-
-@media (max-width: 700px) {
-  .navigation {
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-  }
-
-  .nav-links {
-    justify-content: center;
-    gap: 15px;
-  }
-}
-
   </style>
 </head>
 
-<body>
+<body data-page="dates">
 
-  <!-- NAVIGATION -->
-  <nav class="navigation">
-    <a href="index.html" class="logo">you & me ♡</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      you & me <span>♡</span>
+    </a>
 
-    <div class="nav-links">
+    <nav aria-label="Main navigation">
       <a href="index.html">Home</a>
-      <a href="pictures.html">Pictures</a>
-      <a href="notes.html">Notes</a>
-      <a href="dates.html">Our Dates</a>
+      <a href="pictures.html">Our Pictures</a>
+      <a href="notes.html">Our Notes</a>
+      <a href="dates.html" class="active">Our Dates</a>
       <a href="future-dates.html">Future Dates</a>
-    </div>
-  </nav>
-
-  <!-- PAGE TITLE -->
-  <header class="dates-header">
-    <p class="eyebrow"></p>
-
-    <h1>Our <em>Dates.</em></h1>
-
-    <p>
-      A collection of moments I never want to forget.
-    </p>
+    </nav>
   </header>
 
-  <!-- ALL FIVE DATES -->
-  <main class="dates-grid">
+  <main>
+    <header class="dates-header">
+      <h1>Our <em>Dates.</em></h1>
+      <p>A collection of moments I never want to forget.</p>
+    </header>
 
-    <!-- DATE 1 -->
-    <article class="date-card">
-      <div class="date-tape"></div>
-      <span class="date-number">01</span>
+    <section class="upload-area">
+      <button id="showDateUpload" class="upload-button" type="button">
+        + Add Date Photo ♡
+      </button>
 
-      <img src="date1.jpg">
+      <form id="dateUploadForm" class="upload-form">
+        <input
+          id="datePhotoFile"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          required
+        >
 
-      <h3></h3>
-      <p class="date-time">Our cup painting date</p>
+        <input
+          id="dateTitle"
+          type="text"
+          placeholder="Name of our date ♡"
+          maxlength="80"
+          required
+        >
 
-      <p class="date-description">
-       
-      </p>
-    </article>
+        <input
+          id="dateCaption"
+          type="text"
+          placeholder="A little memory... (optional)"
+          maxlength="200"
+        >
 
-    <!-- DATE 2 -->
-    <article class="date-card">
-      <div class="date-tape"></div>
-      <span class="date-number">02</span>
+        <button id="submitDatePhoto" class="upload-button" type="submit">
+          Save our date ♡
+        </button>
 
-     <img src="date2.jpg">
+        <p id="dateUploadStatus" class="upload-status" role="status"></p>
+      </form>
+    </section>
 
-      <h3> </h3>
-      <p class="date-time">When we went to that resturant near corniche</p>
+    <section class="dates-grid">
 
-      <p class="date-description">
-        
-      </p>
-    </article>
+      <article class="date-card">
+        <div class="date-tape"></div>
+        <span class="date-number">01</span>
+        <img src="date1.jpg" alt="Our cup painting date">
+        <p class="date-time">Our cup painting date</p>
+      </article>
 
-    <!-- DATE 3 -->
-    <article class="date-card">
-      <div class="date-tape"></div>
-      <span class="date-number">03</span>
+      <article class="date-card">
+        <div class="date-tape"></div>
+        <span class="date-number">02</span>
+        <img src="date2.jpg" alt="Our restaurant date">
+        <p class="date-time">
+          When we went to that restaurant near Corniche
+        </p>
+      </article>
 
-      <img src="date3.jpg">
-      <h3></h3>
-      <p class="date-time">The flower farm
-      </p>
+      <article class="date-card">
+        <div class="date-tape"></div>
+        <span class="date-number">03</span>
+        <img src="date3.jpg" alt="The flower farm">
+        <p class="date-time">The flower farm</p>
+      </article>
 
-      <p class="date-description">
-      
-      </p>
-    </article>
+      <article class="date-card">
+        <div class="date-tape"></div>
+        <span class="date-number">04</span>
+        <img src="date4.JPG" alt="Our anniversary">
+        <p class="date-time">Celebrating our anniversary</p>
+      </article>
 
-    <!-- DATE 4 -->
-    <article class="date-card">
-      <div class="date-tape"></div>
-      <span class="date-number">04</span>
+      <article class="date-card">
+        <div class="date-tape"></div>
+        <span class="date-number">05</span>
+        <img src="date5.JPG" alt="Trying new food together">
+        <p class="date-time">
+          Trying tacos and dumplings for the first time with you
+        </p>
+      </article>
 
-      <img src="date4.jpg">
+      <div class="dates-ending">
+        And so many more memories to come... ♡
+      </div>
+    </section>
 
-      <h3></h3>
-      <p class="date-time">celebrating our anniversary</p>
-
-      <p class="date-description">
-       
-      </p>
-    </article>
-
-    <!-- DATE 5 -->
-    <article class="date-card">
-      <div class="date-tape"></div>
-      <span class="date-number">05</span>
-
-      <img src="date5.jpg">
-
-      <h3></h3>
-      <p class="date-time">Trying tacos and dumplings for the first time with you</p>
-
-      <p class="date-description">
-       
-      </p>
-    </article>
-
-    <div class="dates-ending">
-      And so many more memories to come... ♡
-    </div>
-
+    <h2 class="new-dates-heading">Our newest dates ♡</h2>
+    <section id="sharedDates" class="dates-grid"></section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p class="footer-heart">♡</p>
     <h2>To be continued...</h2>
     <p>Every date with you is my favorite.</p>
   </footer>
 
-  <audio id="song" src="music/our-song.mp3" loop></audio>
+  <button class="music-toggle" id="musicToggle">
+    ♫ Play our song
+  </button>
+
+  <audio id="song" src="our-song.mp3" loop></audio>
 
   <script type="module" src="script.js"></script>
+  <script type="module" src="dates-upload.js"></script>
 
 </body>
 </html>
