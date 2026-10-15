@@ -51,7 +51,7 @@ onAuthStateChanged(auth, async (user) => {
   );
 
   onSnapshot(photosQuery, (snapshot) => {
-    sharedAlbum.replaceChildren();
+    sharedAlbum.querySelectorAll(".uploaded-photo").forEach(photo => photo.remove());
 
     snapshot.forEach((documentSnapshot) => {
       const photo = documentSnapshot.data();
@@ -64,7 +64,7 @@ onAuthStateChanged(auth, async (user) => {
       ) return;
 
       const figure = document.createElement("figure");
-      figure.className = "polaroid album-photo";
+      figure.className = "polaroid album-photo uploaded-photo";
 
       const img = document.createElement("img");
       img.src = photo.url;
