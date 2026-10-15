@@ -1,1 +1,186 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Our Pictures · Our Little World</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body data-page="pictures"><header class="site-header"><a class="brand" href="index.html">you & me <span>♡</span></a><nav aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="pictures.html" class="active">Our Pictures</a><a href="notes.html" class="">Our Notes</a><a href="dates.html" class="">Our Dates</a><a href="future-dates.html" class="">Future Dates</a></nav></header><main><section class="page-heading"><span class="kicker">OUR PHOTO ALBUM</span><h1>Collected <em>moments.</em></h1><p>Memories we hold dear</p></section><section class="album"><figure class="polaroid album-photo"><img src="photo1.jpg" alt="Memory 1" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo2.jpg" alt="Memory 2" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo3.jpg" alt="Memory 3" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo4.jpg" alt="Memory 4" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo5.jpg" alt="Memory 5" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo6.jpg" alt="Memory 6" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo7.jpg" alt="Memory 7" loading="lazy"><figcaption></figcaption></figure><figure class="polaroid album-photo"><img src="photo8.jpg" alt="Memory 8" loading="lazy"><figcaption></figcaption></figure></section></main><footer>For all the days behind us, and all the days ahead. ♡</footer><button class="music-toggle" id="musicToggle" aria-label="Play music">♫ Play our song</button><audio id="song" src="our-song.mp3" loop></audio><script type="module" src="script.js"></script></body></html>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Pictures · Our Little World</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .upload-area {
+      max-width: 540px;
+      margin: 0 auto 45px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .upload-button {
+      background: #c98196;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 30px;
+      font: 600 15px "DM Sans", sans-serif;
+      cursor: pointer;
+    }
+
+    .upload-button:hover {
+      background: #b66e85;
+    }
+
+    .upload-button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .upload-form {
+      display: none;
+      background: #fffaf7;
+      border: 1px solid #ecd9d8;
+      border-radius: 18px;
+      padding: 22px;
+      margin-top: 20px;
+    }
+
+    .upload-form.open {
+      display: block;
+    }
+
+    .upload-form input {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      padding: 12px;
+      border: 1px solid #e4cccc;
+      border-radius: 10px;
+      font: 14px "DM Sans", sans-serif;
+    }
+
+    .upload-status {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #815a65;
+    }
+
+    .shared-heading {
+      text-align: center;
+      margin: 45px 0 25px;
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      color: #80545f;
+    }
+
+    .shared-album {
+      padding-bottom: 45px;
+    }
+  </style>
+</head>
+
+<body data-page="pictures">
+
+  <header class="site-header">
+    <a class="brand" href="index.html">you & me <span>♡</span></a>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="pictures.html" class="active">Our Pictures</a>
+      <a href="notes.html">Our Notes</a>
+      <a href="dates.html">Our Dates</a>
+      <a href="future-dates.html">Future Dates</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-heading">
+      <span class="kicker">OUR PHOTO ALBUM</span>
+      <h1>Collected <em>moments.</em></h1>
+      <p>Memories we hold dear</p>
+    </section>
+
+    <section class="upload-area">
+      <button id="showUpload" class="upload-button" type="button">
+        + Add Photo ♡
+      </button>
+
+      <form id="uploadForm" class="upload-form">
+        <input
+          id="photoFile"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          required
+        >
+
+        <input
+          id="photoCaption"
+          type="text"
+          placeholder="A little memory... ♡"
+          maxlength="120"
+        >
+
+        <button id="submitPhoto" class="upload-button" type="submit">
+          Save our memory ♡
+        </button>
+
+        <p id="uploadStatus" class="upload-status" role="status"></p>
+      </form>
+    </section>
+
+    <section class="album">
+      <figure class="polaroid album-photo">
+        <img src="photo1.jpg" alt="Memory 1" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo2.jpg" alt="Memory 2" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo3.jpg" alt="Memory 3" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo4.jpg" alt="Memory 4" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo5.jpg" alt="Memory 5" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo6.jpg" alt="Memory 6" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo7.jpg" alt="Memory 7" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="polaroid album-photo">
+        <img src="photo8.jpg" alt="Memory 8" loading="lazy">
+        <figcaption></figcaption>
+      </figure>
+    </section>
+
+    <h2 class="shared-heading">Our newest memories ♡</h2>
+    <section id="sharedAlbum" class="album shared-album"></section>
+  </main>
+
+  <footer>
+    For all the days behind us, and all the days ahead. ♡
+  </footer>
+
+  <button class="music-toggle" id="musicToggle" aria-label="Play music">
+    ♫ Play our song
+  </button>
+
+  <audio id="song" src="our-song.mp3" loop></audio>
+
+  <script type="module" src="script.js"></script>
+  <script type="module" src="pictures-upload.js"></script>
+</body>
+</html>
