@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function approved() {
+      return request.auth != null && request.auth.uid in [
+        "REPLACE_WITH_YOUR_UID",
+        "REPLACE_WITH_HER_UID"
+      ];
+    }
+    match /notes/{noteId} {
+      allow read: if approved();
+      allow create: if approved()
+        && request.resource.data.keys().hasOnly(['text','authorId','authorName','createdAt'])
+        && request.resource.data.keys().hasAll(['text','authorId','authorName','createdAt'])
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 1500
+        && request.resource.data.authorName is string
+        && request.resource.data.authorName.size() <= 150
+        && request.resource.data.createdAt == request.time;
+      allow update: if false;
+      allow delete: if approved() && resource.data.authorId == request.auth.uid;
+    }
+    match /plans/{planId} {
+      allow read: if approved();
+      allow create: if approved()
+        && request.resource.data.keys().hasOnly(['title','date','details','status','authorId','authorName','createdAt'])
+        && request.resource.data.keys().hasAll(['title','date','details','status','authorId','authorName','createdAt'])
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 100
+        && request.resource.data.date is string
+        && request.resource.data.date.size() <= 10
+        && request.resource.data.details is string
+        && request.resource.data.details.size() <= 800
+        && request.resource.data.authorName is string
+        && request.resource.data.authorName.size() <= 150
+        && request.resource.data.status == 'Wishlist'
+        && request.resource.data.createdAt == request.time;
+      allow update: if approved()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status in ['Wishlist','Completed'];
+      allow delete: if approved();
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

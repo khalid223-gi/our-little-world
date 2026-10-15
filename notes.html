@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Notes · Our Little World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="notes">
+  <header class="site-header">
+    <a class="brand" href="index.html">you &amp; me <span>♡</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="pictures.html">Our Pictures</a>
+      <a href="notes.html" class="active">Our Notes</a>
+      <a href="dates.html">Our Dates</a>
+      <a href="future-dates.html">Future Dates</a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-heading">
+      <span class="kicker">JUST BETWEEN US</span>
+      <h1>Little <em>notes.</em></h1>
+      <p>Things we want the other person to remember.</p>
+    </section>
+    <section class="shared">
+      <div class="auth-card" id="authBox">
+        <h2>A little secret, just for us ♡</h2>
+        <p>Enter our secret word to see our notes.</p>
+        <form id="loginForm">
+          <label>Our secret word
+            <input id="secretWord" type="password" required autocomplete="off" placeholder="Our secret word...">
+          </label>
+          <button class="button" type="submit">Unlock ♡</button>
+        </form>
+        <p class="feedback" id="authMessage" role="status"></p>
+      </div>
+      <div id="privateArea" hidden>
+        <div class="signed-in"><span>Our little corner of the world ♡</span><button id="signOutBtn" class="text-button" type="button">Lock ♡</button></div>
+        <form class="paper-form" id="noteForm">
+          <h2>Leave a note</h2>
+          <label>Your note<textarea id="noteText" maxlength="1500" required placeholder="Something I've been meaning to tell you..."></textarea></label>
+          <button class="button" type="submit">Pin this note ♡</button>
+          <p class="feedback" id="formMessage" role="status"></p>
+        </form>
+        <div class="notes-grid" id="notesList" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+  <footer>For all the days behind us, and all the days ahead. ♡</footer>
+  <button class="music-toggle" id="musicToggle" aria-label="Play music">♫ Play our song</button>
+  <audio id="song" src="music/our-song.mp3" loop></audio>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

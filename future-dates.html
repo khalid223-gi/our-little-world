@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Future Dates · Our Little World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="future-dates">
+  <header class="site-header">
+    <a class="brand" href="index.html">you &amp; me <span>♡</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="pictures.html">Our Pictures</a>
+      <a href="notes.html">Our Notes</a>
+      <a href="dates.html">Our Dates</a>
+      <a href="future-dates.html" class="active">Future Dates</a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-heading">
+      <span class="kicker">STILL TO COME</span>
+      <h1>Our next <em>adventures.</em></h1>
+      <p>A shared list of things we want to do together.</p>
+    </section>
+    <section class="shared">
+      <div class="auth-card" id="authBox">
+        <h2>A little secret, just for us ♡</h2>
+        <p>Enter our secret word to see our future dates.</p>
+        <form id="loginForm">
+          <label>Our secret word
+            <input id="secretWord" type="password" required autocomplete="off" placeholder="Our secret word...">
+          </label>
+          <button class="button" type="submit">Unlock ♡</button>
+        </form>
+        <p class="feedback" id="authMessage" role="status"></p>
+      </div>
+      <div id="privateArea" hidden>
+        <div class="signed-in"><span>So many adventures ahead ♡</span><button id="signOutBtn" class="text-button" type="button">Lock ♡</button></div>
+        <form class="paper-form" id="planForm">
+          <h2>Plan something lovely</h2>
+          <label>Date idea<input id="planTitle" maxlength="100" placeholder="Coffee and a bookstore" required></label>
+          <label>When (optional)<input id="planDate" type="date"></label>
+          <label>Details<textarea id="planDetails" maxlength="800" placeholder="Where should we go? What should we bring?"></textarea></label>
+          <button class="button" type="submit">Add to our plans ↗</button>
+          <p class="feedback" id="formMessage" role="status"></p>
+        </form>
+        <div class="plans-grid" id="plansList" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+  <footer>For all the days behind us, and all the days ahead. ♡</footer>
+  <button class="music-toggle" id="musicToggle" aria-label="Play music">♫ Play our song</button>
+  <audio id="song" src="music/our-song.mp3" loop></audio>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
