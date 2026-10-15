@@ -52,7 +52,7 @@ onAuthStateChanged(auth, async (user) => {
   );
 
   onSnapshot(datesQuery, (snapshot) => {
-    gallery.replaceChildren();
+    gallery.querySelectorAll(".uploaded-date").forEach(card => card.remove());
 
     snapshot.forEach((docSnapshot) => {
       const date = docSnapshot.data();
@@ -65,7 +65,7 @@ onAuthStateChanged(auth, async (user) => {
       ) return;
 
       const card = document.createElement("article");
-      card.className = "date-card";
+      card.className = "date-card uploaded-date";
 
       const tape = document.createElement("div");
       tape.className = "date-tape";
